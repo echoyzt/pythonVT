@@ -1,0 +1,4 @@
+SMEE_EXPORT SMEE_INT32 EC4T_update_wa_baseline (IN SMEE_ALIGN_TYPE_ENUM align_type,
+    OUT EC4T_UPDATE_WA_BASELINE_RESULT_STRUCT *oa_baseline_result_p );
+SMEE_EXPORT SMEE_INT32 EC4A_get_status  (
+    OUT EC4A_STATUS_STRUCT *status );

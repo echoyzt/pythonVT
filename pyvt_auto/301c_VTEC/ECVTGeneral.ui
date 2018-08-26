@@ -1,0 +1,525 @@
+<ui version="4.0" >
+ <class>ECVTGeneral</class>
+ <widget class="QWidget" name="ECVTGeneral" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>773</width>
+    <height>659</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="EC4A_initialize_qgb" >
+     <property name="title" >
+      <string>Initialize</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="0" >
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>25</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="1" >
+         <widget class="SMEE::PerformButton" name="EC4A_initialize_qpb" >
+          <property name="text" >
+           <string>Perform</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item rowspan="2" row="0" column="1" >
+    <widget class="QGroupBox" name="EC4A_get_status_qgb" >
+     <property name="title" >
+      <string>Get Status</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QLabel" name="EC4A_get_status__status_status_qlb" >
+          <property name="text" >
+           <string>Status</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1" >
+       <widget class="SMEE::StatusLine" name="EC4A_get_status__status_status_qle" >
+        <property name="layoutDirection" >
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>190</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="0" colspan="2" >
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>25</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="1" >
+         <widget class="SMEE::PerformButton" name="EC4A_get_status_qpb" >
+          <property name="text" >
+           <string>Perform</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QGroupBox" name="EC4A_terminate_qgb" >
+     <property name="title" >
+      <string>Terminate</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>72</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="0" >
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>25</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="1" >
+         <widget class="SMEE::PerformButton" name="EC4A_terminate_qpb" >
+          <property name="text" >
+           <string>Perform</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QGroupBox" name="EC4A_update_mc_qgb" >
+     <property name="title" >
+      <string>Update Machine Constants</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>73</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="0" >
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>25</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="1" >
+         <widget class="SMEE::PerformButton" name="EC4A_update_mc_qpb" >
+          <property name="text" >
+           <string>Perform</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0" >
+    <widget class="QGroupBox" name="EC4A_set_sim_mode_qgb" >
+     <property name="title" >
+      <string>Mode</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QLabel" name="EC4A_set_sim_mode__sim_mode_qlb" >
+          <property name="text" >
+           <string>Sim Mode</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1" >
+       <widget class="SMEE::ComboBox" name="EC4A_set_sim_mode__sim_mode_qcb" >
+        <property name="layoutDirection" >
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text" stdset="0" >
+         <string>ComboBox</string>
+        </property>
+        <item>
+         <property name="text" >
+          <string>DISABLED</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>MODE 1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>MODE 2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>MODE 3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>MODE 4</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QLabel" name="EC4A_set_sim_mode__trace_mode_qlb" >
+          <property name="text" >
+           <string>Trace Mode</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="1" >
+       <widget class="SMEE::ComboBox" name="EC4A_set_sim_mode__trace_mode_qcb" >
+        <property name="layoutDirection" >
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text" stdset="0" >
+         <string>ComboBox</string>
+        </property>
+        <item>
+         <property name="text" >
+          <string>DISABLED</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>INT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>EXT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>INT_EXT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>REAL_TIME</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>INT_REAL</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>EXT_REAL</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>INT_EXT_REAL</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0" >
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QLabel" name="EC4A_set_sim_mode__data_mode_qlb" >
+          <property name="text" >
+           <string>Data Mode</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="1" >
+       <widget class="SMEE::ComboBox" name="EC4A_set_sim_mode__data_mode_qcb" >
+        <property name="layoutDirection" >
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text" stdset="0" >
+         <string>ComboBox</string>
+        </property>
+        <item>
+         <property name="text" >
+          <string>DISABLED</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>INT_INPUT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>INT_OUTPUT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>INT_INOUT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>EXT_INPUT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>EXT_OUTPUT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>EXT_INOUT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>INT_EXT_INPUT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>INT_EXT_OUTPUT</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>INT_EXT_INOUT</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="0" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="4" column="0" colspan="2" >
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>25</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="1" >
+         <widget class="SMEE::PerformButton" name="EC4A_get_sim_mode_qpb" >
+          <property name="text" >
+           <string>Get</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2" >
+         <widget class="SMEE::PerformButton" name="EC4A_set_sim_mode_qpb" >
+          <property name="text" >
+           <string>Set</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SMEE::ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>ComboBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SMEE::PerformButton</class>
+   <extends>SMEE::Button</extends>
+   <header>PerformButton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SMEE::StatusLine</class>
+   <extends>SMEE::LineEdit</extends>
+   <header>StatusLine.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

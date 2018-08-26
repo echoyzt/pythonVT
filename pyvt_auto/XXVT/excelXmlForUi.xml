@@ -1,0 +1,148 @@
+<?xml version="1.0" ?>
+<pageInfo>
+	<pageName pageId="General">
+		<firstTab tableName="none">
+			<funName funId="EC4A_get_status" funLabelId="Get Status">
+				<paramLabel paramLabelId="Initialized">
+					<paramObjectName>EC4A_get_status_init_flag_ptr</paramObjectName>
+					<paramUnit>none</paramUnit>
+					<paramAttr>OUT</paramAttr>
+					<ParamPrecision>none</ParamPrecision>
+					<paramType>SMEE_BOOL</paramType>
+				</paramLabel>
+			</funName>
+			<funName funId="EC4A_get_sim_mode" funLabelId="Mode">
+				<paramLabel paramLabelId="Simulation Mode">
+					<paramObjectName>EC4A_get_sim_mode_sim_mode_ptr</paramObjectName>
+					<paramUnit>none</paramUnit>
+					<paramAttr>OUT</paramAttr>
+					<ParamPrecision>none</ParamPrecision>
+					<paramType enumName="TR4A_SIM_MODE_ENUM">
+						<enumMember>Disabled</enumMember>
+						<enumMember>Mode 1</enumMember>
+						<enumMember>Mode 2</enumMember>
+						<enumMember>Mode 3</enumMember>
+						<enumMember>Mode 4</enumMember>
+					</paramType>
+				</paramLabel>
+			</funName>
+			<funName funId="EC4A_set_sim_mode" funLabelId="Mode">
+				<paramLabel paramLabelId="Simulation Mode">
+					<paramObjectName>EC4A_set_sim_mode_sim_mode</paramObjectName>
+					<paramUnit>none</paramUnit>
+					<paramAttr>IN</paramAttr>
+					<ParamPrecision>none</ParamPrecision>
+					<paramType enumName="TR4A_SIM_MODE_ENUM">
+						<enumMember>Disabled</enumMember>
+						<enumMember>Mode 1</enumMember>
+						<enumMember>Mode 2</enumMember>
+						<enumMember>Mode 3</enumMember>
+						<enumMember>Mode 4</enumMember>
+					</paramType>
+				</paramLabel>
+			</funName>
+		</firstTab>
+	</pageName>
+	<pageName pageId="Maintenance">
+		<firstTab tableName="Global Level">
+			<funName funId="EC4T_do_global_level_on_substrate" funLabelId="Global Level On Substrate">
+				<paramLabel paramLabelId="Do Global Level">
+					<paramObjectName>EC4T_do_global_level_on_substrate_do_global_level</paramObjectName>
+					<paramUnit>none</paramUnit>
+					<paramAttr>IN</paramAttr>
+					<ParamPrecision>none</ParamPrecision>
+					<paramType>SMEE_BOOL</paramType>
+				</paramLabel>
+			</funName>
+			<funName funId="EC4T_do_global_level_on_ws_fiducial" funLabelId="Global Level On WS">
+				<paramLabel paramLabelId="Substrate Thickness">
+					<paramObjectName>EC4T_do_global_level_on_ws_fiducial_substrate_thickness</paramObjectName>
+					<paramUnit>um</paramUnit>
+					<paramAttr>IN</paramAttr>
+					<ParamPrecision>3.0</ParamPrecision>
+					<paramType>SMEE_DOUBLE </paramType>
+				</paramLabel>
+			</funName>
+		</firstTab>
+		<firstTab tableName="Reticle Align">
+			<funName funId="EC4T_reticle_align" funLabelId="Multi Reticle Align">
+				<paramLabel paramLabelId="RM1 X">
+					<paramObjectName>EC4T_reticle_align_align_spec_RM1_pos_x</paramObjectName>
+					<paramUnit>mm</paramUnit>
+					<paramAttr>IN</paramAttr>
+					<ParamPrecision>3.0</ParamPrecision>
+					<paramType>SMEE_DOUBLE </paramType>
+				</paramLabel>
+			</funName>
+			<funName funId="EC4T_TTL_align" funLabelId="Single Reticle Align">
+				<paramLabel paramLabelId="Mark Pos X">
+					<paramObjectName>EC4T_TTL_align_mark_norminal_pos_x</paramObjectName>
+					<paramUnit>mm</paramUnit>
+					<paramAttr>IN</paramAttr>
+					<ParamPrecision>3.0</ParamPrecision>
+					<paramType>SMEE_DOUBLE </paramType>
+				</paramLabel>
+			</funName>
+		</firstTab>
+		<firstTab tableName="Search Focus/Set Ws AllbyFls">
+			<funName funId="EC4T_search_focus" funLabelId="Search Focus">
+				<paramLabel paramLabelId="Align Type">
+					<paramObjectName>EC4T_search_focus_align_type</paramObjectName>
+					<paramUnit>none</paramUnit>
+					<paramAttr>IN</paramAttr>
+					<ParamPrecision>none</ParamPrecision>
+					<paramType enumName="SMEE_ALIGN_TYPE_ENUM "/>
+				</paramLabel>
+			</funName>
+			<funName funId="EC4T_set_ws_position_all_by_fls" funLabelId="Set Ws AllbyFls">
+				<paramLabel paramLabelId="Wafer Size">
+					<paramObjectName>EC4T_set_ws_position_all_by_fls_substrate_spec</paramObjectName>
+					<paramUnit>none</paramUnit>
+					<paramAttr>IN</paramAttr>
+					<ParamPrecision>none</ParamPrecision>
+					<paramType enumName="SMEE_SUBSTRATE_SIZE_ENUM "/>
+				</paramLabel>
+			</funName>
+		</firstTab>
+		<firstTab tableName="Substrate Align">
+			<funName funId="EC4T_wa_align" funLabelId="Single Substrate Align">
+				<paramLabel paramLabelId="Align Type">
+					<paramObjectName>EC4T_wa_align_align_type</paramObjectName>
+					<paramUnit>none</paramUnit>
+					<paramAttr>IN</paramAttr>
+					<ParamPrecision>none</ParamPrecision>
+					<paramType enumName="SMEE_ALIGN_TYPE_ENUM "/>
+				</paramLabel>
+			</funName>
+			<funName funId="EC4T_substrate_align" funLabelId="Multi Substrate Align">
+				<paramLabel paramLabelId="Align Type">
+					<paramObjectName>EC4T_substrate_align_align_type</paramObjectName>
+					<paramUnit>none</paramUnit>
+					<paramAttr>IN</paramAttr>
+					<ParamPrecision>none</ParamPrecision>
+					<paramType enumName="SMEE_ALIGN_TYPE_ENUM "/>
+				</paramLabel>
+			</funName>
+		</firstTab>
+		<firstTab tableName="Update Baseline">
+			<funName funId="EC4T_update_ttl_baseline" funLabelId="Update TTL Baseline">
+				<paramLabel paramLabelId="Mark Pos In CCD x">
+					<paramObjectName>EC4T_update_ttl_baseline_ttl_baseline_result_p_mark_pos_in_ccd_x</paramObjectName>
+					<paramUnit>pixel</paramUnit>
+					<paramAttr>OUT</paramAttr>
+					<ParamPrecision>3.0</ParamPrecision>
+					<paramType>SMEE_DOUBLE </paramType>
+				</paramLabel>
+			</funName>
+			<funName funId="EC4T_update_wa_baseline" funLabelId="Update Substrate Baseline">
+				<paramLabel paramLabelId="Align Type">
+					<paramObjectName>EC4T_update_wa_baseline_align_type</paramObjectName>
+					<paramUnit>none</paramUnit>
+					<paramAttr>IN</paramAttr>
+					<ParamPrecision>none</ParamPrecision>
+					<paramType enumName="SMEE_ALIGN_TYPE_ENUM "/>
+				</paramLabel>
+			</funName>
+		</firstTab>
+	</pageName>
+</pageInfo>

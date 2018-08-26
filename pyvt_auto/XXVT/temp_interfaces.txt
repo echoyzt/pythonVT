@@ -1,0 +1,60 @@
+SMEE_EXPORT SMEE_INT32 EC4A_get_status  (
+    OUT EC4A_STATUS_STRUCT *status );
+SMEE_EXPORT SMEE_INT32 EC4A_get_sim_mode  (
+    OUT TR4A_SIM_MODE_ENUM *sim_mode,
+    OUT TR4A_TRACE_MODE_ENUM *trace_mode,
+    OUT TR4A_REQ_MODE_ENUM *data_mode );
+SMEE_EXPORT SMEE_INT32 EC4A_set_sim_mode  (
+    IN TR4A_SIM_MODE_ENUM sim_mode, 
+    IN TR4A_TRACE_MODE_ENUM trace_mode, 
+    IN TR4A_REQ_MODE_ENUM data_mode );
+SMEE_EXPORT SMEE_INT32 EC4T_do_global_level_on_substrate (
+        IN SMEE_BOOL do_global_level,
+        IN SMEE_BOOL do_mapping,
+        IN SMEE_SUBSTRATE_SIZE_ENUM substrate_spec,
+        IN SMEE_DOUBLE substrate_thickness,
+        IN SMEE_DOUBLE user_focus_offset,
+        IN xy_vect global_middle_point,
+        IN EC4T_MAPPING_ROUTE_STRUCT *mapping_route,
+        OUT zrxry_vect *level_result_p );
+SMEE_EXPORT SMEE_INT32 EC4T_do_global_level_on_ws_fiducial (
+    IN SMEE_DOUBLE substrate_thickness,
+    IN SMEE_DOUBLE user_focus_offset,
+    OUT zrxry_vect *level_result_p,
+    OUT zrxry_vect *substrate_cuniform_p );
+SMEE_EXPORT SMEE_INT32 EC4T_reticle_align (IN EC4T_RETI_ALIGN_SPC_STRUCT align_spec,
+    OUT EC4T_UPDATE_TTL_BASELINE_RESULT_STRUCT *ttl_baseline_result_p,
+    OUT EC4A_COARSE_RETICLE_ALIGN_RESULT_STRUCT *cora_result_p,
+    OUT EC4A_FINE_RETICLE_ALIGN_RESULT_STRUCT *fira_result_p );
+SMEE_EXPORT SMEE_INT32 EC4T_TTL_align (
+    IN xy_vect mark_norminal_pos,
+    IN EC4T_ALIGN_RECIPE_STRUCT ttl_align_recipe,
+    OUT EC4T_TTL_ALIGN_RESULT_STRUCT *align_result_p );
+SMEE_EXPORT SMEE_INT32 EC4T_search_focus (IN SMEE_ALIGN_TYPE_ENUM align_type,
+	IN SMEE_SUBSTRATE_SIZE_ENUM ePlateType,
+    IN xyrzzrxry_vect ws_pos,
+    IN SMEE_DOUBLE z_search_range,
+    OUT zrxry_vect *focused_ws_pos_p,
+    OUT SMEE_DOUBLE *focused_fls_z_p );
+SMEE_EXPORT SMEE_INT32 EC4T_set_ws_position_all_by_fls (
+    IN SMEE_SUBSTRATE_SIZE_ENUM substrate_spec,
+    IN xy_vect wafer_pos,
+    IN zrxry_vect ws_expect_tilt,
+    OUT zrxry_vect *level_result_p );
+SMEE_EXPORT SMEE_INT32 EC4T_wa_align (IN SMEE_ALIGN_TYPE_ENUM align_type,
+	IN SMEE_SUBSTRATE_SIZE_ENUM wafer_size,
+    IN xy_vect mark_nominal_pos,
+    IN EC4T_WA_ALIGN_RECIPE_STRUCT oa_align_recipe,
+    OUT EC4T_WA_ALIGN_RESULT_STRUCT *align_result_p );
+SMEE_EXPORT SMEE_INT32 EC4T_substrate_align (
+    IN SMEE_ALIGN_TYPE_ENUM align_type,    
+	IN SMEE_SUBSTRATE_SIZE_ENUM wafer_size,
+    IN SMEE_UINT32 nr_marks,
+    IN xy_vect mark_norminal_positions[EC4T_MAX_NR_SUBSTRATE_MARKS],
+    IN EC4T_WA_ALIGN_RECIPE_STRUCT oa_align_recipe,
+    OUT EC4T_UPDATE_WA_BASELINE_RESULT_STRUCT *update_oa_baseline_result_p,
+    OUT EC4A_ALIGN_MODEL_RESULT_STRUCT *align_result_p );
+SMEE_EXPORT SMEE_INT32 EC4T_update_ttl_baseline (
+    OUT EC4T_UPDATE_TTL_BASELINE_RESULT_STRUCT *ttl_baseline_result_p );
+SMEE_EXPORT SMEE_INT32 EC4T_update_wa_baseline (IN SMEE_ALIGN_TYPE_ENUM align_type,
+    OUT EC4T_UPDATE_WA_BASELINE_RESULT_STRUCT *oa_baseline_result_p );

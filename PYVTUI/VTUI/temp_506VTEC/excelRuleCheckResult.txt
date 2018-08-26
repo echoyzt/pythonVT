@@ -1,0 +1,8 @@
+显示检查结果：
+--------------step1 检查需求表格规范------>start.
+ExcelName = S314_SW_EDS_VTEC-V4.xls
+m_row_num=149,对应需求表格的行标
+len param_basket = 146
+(15,7):cell=120.0 默认值不在范围内
+.sh1 和sh2 接口一致。
+--------------step1 检查需求表格规范------>end.

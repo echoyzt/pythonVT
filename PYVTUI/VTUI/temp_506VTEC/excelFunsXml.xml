@@ -1,0 +1,1035 @@
+<?xml version="1.0" ?>
+<fun_info>
+	<fun_name name="EC4A_get_sim_mode">
+		<attribute value="OUT">
+			<type>TR4A_SIM_MODE_ENUM</type>
+			<label unit="none">Simulation Mode</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4A_get_sim_mode.sim_mode_ptr</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>TR4A_TRACE_MODE_ENUM</type>
+			<label unit="none">Trace Mode</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4A_get_sim_mode.trace_mode_ptr</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>TR4A_REQ_MODE_ENUM</type>
+			<label unit="none">Data Request Mode</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4A_get_sim_mode.data_req_mode_ptr</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4A_get_status">
+		<attribute value="OUT">
+			<type>SMEE_BOOL</type>
+			<label unit="none">Initialized</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4A_get_status.init_flag_ptr</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SSB_DRIVER_STATUS_ENUM</type>
+			<label unit="none">Driver Status</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4A_get_status.driver_status_ptr.driver_status</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4A_set_sim_mode">
+		<attribute value="IN">
+			<type>TR4A_SIM_MODE_ENUM</type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Simulation Mode</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4A_set_sim_mode.sim_mode</members>
+		</attribute>
+		<attribute value="IN">
+			<type>TR4A_TRACE_MODE_ENUM</type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Trace Mode</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4A_set_sim_mode.trace_mode</members>
+		</attribute>
+		<attribute value="IN">
+			<type>TR4A_REQ_MODE_ENUM</type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Data Request Mode</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4A_set_sim_mode.data_req_mode</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4T_do_global_level_on_substrate">
+		<attribute value="IN">
+			<type>SMEE_BOOL</type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Do Global Level</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.do_global_level</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_BOOL</type>
+			<interval default="0.0">none</interval>
+			<step>none</step>
+			<label unit="none">Do Mapping</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.do_mapping</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_SUBSTRATE_SIZE_ENUM  </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Substrate Spec</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.substrate_spec</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="120.0">[1,100]</interval>
+			<step>1E6</step>
+			<label unit="um">Substrate Thickness</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.substrate_thickness</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="um">User Focus Offset</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.user_focus_offset</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Global MiddlePointX</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.global_middle_point.x</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Global Middle Point Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.global_middle_point.y</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_INT32</type>
+			<interval default="none">none</interval>
+			<step>1E0</step>
+			<label unit="none">Scan Num</label>
+			<precision>0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.mapping_route.iScanNum</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E6</step>
+			<label unit="mm">Start Pos[i]X:</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.mapping_route.sScanRoute[EC4A_MAPPING_SCAN_NUM].sStartPos.x</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E6</step>
+			<label unit="mm">Start Pos[i]Y:</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.mapping_route.sScanRoute[EC4A_MAPPING_SCAN_NUM].sStartPos.y</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E6</step>
+			<label unit="mm">End Pos[i]X:</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.mapping_route.sScanRoute[EC4A_MAPPING_SCAN_NUM].sEndPos.x</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E6</step>
+			<label unit="mm">End Pos[i]Y:</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.mapping_route.sScanRoute[EC4A_MAPPING_SCAN_NUM].sEndPos.y</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_UINT32</type>
+			<interval default="none">none</interval>
+			<step>1E0</step>
+			<label unit="none">Spot Valid</label>
+			<precision>0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.mapping_route.sScanRoute[EC4A_MAPPING_SCAN_NUM].uiSpotValid</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Level Result Z</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.level_result_p.z</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Level ResultRx</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.level_result_p.rx</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Level ResultRy</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_do_global_level_on_substrate.level_result_p.ry</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4T_do_global_level_on_ws_fiducial">
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="um">Substrate Thickness</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_ws_fiducial.substrate_thickness</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="um">User Focus Offset</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_ws_fiducial.user_focus_offset</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Level Result Z</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_ws_fiducial.level_result_p.z</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Level Result Rx</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_ws_fiducial.level_result_p.rx</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Level Result Ry</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_ws_fiducial.level_result_p.ry</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Substrate Cuniform Z</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_ws_fiducial.substrate_cuniform_p.z</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Substrate Cuniform Rx</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_ws_fiducial.substrate_cuniform_p.rx</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Substrate Cuniform Ry</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_do_global_level_on_ws_fiducial.substrate_cuniform_p.ry</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4T_reticle_align">
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">RM1 X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.align_spec.RM1_pos.x</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">RM1 Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.align_spec.RM1_pos.y</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">RM2 X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.align_spec.RM2_pos.x</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">RM2 Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.align_spec.RM2_pos.y</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E6</step>
+			<label unit="%">Matching Rate</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_reticle_align.align_spec.matching_rate</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_CHAR </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Template File</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_reticle_align.align_spec.template_file[128]</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="%">Matching Rate</label>
+			<precision>2.0</precision>
+			<members>u_param.param_EC4T_reticle_align.ttl_baseline_result_p.matching_rate</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Pos in CCD X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.ttl_baseline_result_p.mark_pos_in_ccd.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Pos in CCD Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.ttl_baseline_result_p.mark_pos_in_ccd.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_INT32</type>
+			<label unit="none">error_code</label>
+			<precision>0</precision>
+			<members>u_param.param_EC4T_reticle_align.cora_result_p.error_code</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Rcs To RSCS trans x</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.cora_result_p.rcs_to_rscs_trans.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Rcs To RSCS trans y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.cora_result_p.rcs_to_rscs_trans.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Rcs To RSCS Rot</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.cora_result_p.rcs_to_rscs_rot</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="ppm">Rcs To RSCS Mag</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_reticle_align.cora_result_p.rcs_to_rscs_mag</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_INT32</type>
+			<label unit="none">error_code</label>
+			<precision>0</precision>
+			<members>u_param.param_EC4T_reticle_align.fira_result_p.error_code</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Rcs To WZCS trans x</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.fira_result_p.rcs_to_wzcs_trans.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Rcs To WZCS trans y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.fira_result_p.rcs_to_wzcs_trans.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Rcs To WZCS Rot</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_reticle_align.fira_result_p.rcs_to_wzcs_rot</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="ppm">Rcs To WZCS Mag</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_reticle_align.fira_result_p.rcs_to_wzcs_mag</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4T_search_focus">
+		<attribute value="IN">
+			<type>SMEE_ALIGN_TYPE_ENUM </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Align Type</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_search_focus.align_type</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_SUBSTRATE_SIZE_ENUM</type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Plate Type</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_search_focus.ePlateType</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">WS POS X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.ws_pos.x</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">WS POS Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.ws_pos.y</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mrad">WS POS Rz</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.ws_pos.rz</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">WS POS Z</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.ws_pos.z</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mrad">WS POS Rx</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.ws_pos.rx</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mrad">WS POS Ry</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.ws_pos.ry</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Z Search Range</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.z_search_range</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Focus Ws Pos Z</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.focused_ws_pos_p.z</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Focus Ws Pos Rx</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.focused_ws_pos_p.rx</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Focus Ws Pos Ry</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.focused_ws_pos_p.ry</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Focus Fls z</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_search_focus.focused_fls_z_p</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4T_set_ws_position_all_by_fls">
+		<attribute value="IN">
+			<type>SMEE_SUBSTRATE_SIZE_ENUM </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Wafer Size</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_set_ws_position_all_by_fls.substrate_spec</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Wafer Pos X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_set_ws_position_all_by_fls.wafer_pos.x</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Wafer Pos Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_set_ws_position_all_by_fls.wafer_pos.y</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">WS Exp Tilt Z</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_set_ws_position_all_by_fls.ws_expect_tilt.z</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mrad">WS Exp Tilt Rx</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_set_ws_position_all_by_fls.ws_expect_tilt.rx</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mrad">WS Exp Tilt Ry</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_set_ws_position_all_by_fls.ws_expect_tilt.ry</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Level Result Z</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_set_ws_position_all_by_fls.level_result_p.z</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Level Result Rx</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_set_ws_position_all_by_fls.level_result_p.rx</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Level Result Ry</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_set_ws_position_all_by_fls.level_result_p.ry</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4T_substrate_align">
+		<attribute value="IN">
+			<type>SMEE_ALIGN_TYPE_ENUM </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Align Type</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_substrate_align.align_type</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_SUBSTRATE_SIZE_ENUM</type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Wafer Size</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_substrate_align.wafer_size</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_UINT32 </type>
+			<interval default="none">none</interval>
+			<step>1E0</step>
+			<label unit="none">Nr Marks</label>
+			<precision>0</precision>
+			<members>u_param.param_EC4T_substrate_align.nr_marks</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Mark Pos X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_substrate_align.mark_norminal_positions[EC4T_MAX_NR_SUBSTRATE_MARKS].x</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Mark Pos Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_substrate_align.mark_norminal_positions[EC4T_MAX_NR_SUBSTRATE_MARKS].y</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_BOOL </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Do Auto Focus</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_substrate_align.oa_align_recipe.do_auto_focus</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_BOOL </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Perform Vert Compensation</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_substrate_align.oa_align_recipe.perform_vert_compensation</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E6</step>
+			<label unit="um">Vert Compensation</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_substrate_align.oa_align_recipe.vert_compensation</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E6</step>
+			<label unit="%">Matching Rate</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_substrate_align.oa_align_recipe.matching_rate</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_CHAR </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Template File</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_substrate_align.oa_align_recipe.template_file[128]</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="pixel">Aim Pos X</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_substrate_align.update_oa_baseline_result_p.aim_pos.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="pixel">Aim Pos Y</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_substrate_align.update_oa_baseline_result_p.aim_pos.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="%">Match Rate</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_substrate_align.update_oa_baseline_result_p.matching_rate</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_INT32</type>
+			<label unit="none">error_code</label>
+			<precision>0</precision>
+			<members>u_param.param_EC4T_substrate_align.align_result_p.error_code</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Wcs To Wscs Trans x</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_substrate_align.align_result_p.wcs_to_wscs_trans.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Wcs To Wscs Trans y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_substrate_align.align_result_p.wcs_to_wscs_trans.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Wcs To Wscs Rot</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_substrate_align.align_result_p.wcs_to_wscs_rot</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Wcs To Wscs Othro</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_substrate_align.align_result_p.wcs_to_wscs_othro</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="ppm">Wcs To Wscs Magx</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_substrate_align.align_result_p.wcs_to_wscs_mag_x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="ppm">Wcs To Wscs Magy</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_substrate_align.align_result_p.wcs_to_wscs_mag_y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="none">Grid_Coef_x[10]</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_substrate_align.align_result_p.grid_coef_x[EC4A_NR_GRID_COEFS]</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="none">Grid_Coef_y[10]</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_substrate_align.align_result_p.grid_coef_y[EC4A_NR_GRID_COEFS]</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4T_TTL_align">
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Mark Pos X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.mark_norminal_pos.x</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Mark Pos Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.mark_norminal_pos.y</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_BOOL</type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Search Enabled</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_TTL_align.ttl_align_recipe.search_enabled</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E6</step>
+			<label unit="%">Matching Rate</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_TTL_align.ttl_align_recipe.matching_rate</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_CHAR </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Template File[128]</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_TTL_align.ttl_align_recipe.template_file[128]</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="pixel">Mark Pos In CCD X</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.mark_pos_in_ccd.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="pixel">Mark Pos In CCD Y</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.mark_pos_in_ccd.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Pos In WZCS Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.mark_pos_in_wzcs.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="%">Match Rate</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.match_rate</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Align Pos X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.align_pos.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Align Pos Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.align_pos.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mrad">Align Pos Rz</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.align_pos.rz</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Rs Mean Pos X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.rs_meas_pos.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Rs Mean Pos Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.rs_meas_pos.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Rs Mean Pos Rz</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.rs_meas_pos.rz</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Ws Mean Pos X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.ws_meas_pos.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Ws Mean Pos Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.ws_meas_pos.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Ws Mean Pos Rz</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.ws_meas_pos.rz</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Offset In RZCS X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.mark_offset_in_rzcs.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Offset In RZCS Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.mark_offset_in_rzcs.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Offset In WSCS X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.mark_offset_in_wscs.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Offset In WSCS Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_TTL_align.align_result_p.mark_offset_in_wscs.y</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4T_update_ttl_baseline">
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="pixel">Mark Pos In CCD x</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_update_ttl_baseline.ttl_baseline_result_p.mark_pos_in_ccd.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="pixel">Mark Pos In CCD y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_update_ttl_baseline.ttl_baseline_result_p.mark_pos_in_ccd.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="%">Matching Rate</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_update_ttl_baseline.ttl_baseline_result_p.matching_rate</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4T_update_wa_baseline">
+		<attribute value="IN">
+			<type>SMEE_ALIGN_TYPE_ENUM </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Align Type</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_update_wa_baseline.align_type</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="pixel">Aim Pos X</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_update_wa_baseline.oa_baseline_result_p.aim_pos.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="none">Aim Pos Y</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_update_wa_baseline.oa_baseline_result_p.aim_pos.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="%">Matching Rate</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_update_wa_baseline.oa_baseline_result_p.matching_rate</members>
+		</attribute>
+	</fun_name>
+	<fun_name name="EC4T_wa_align">
+		<attribute value="IN">
+			<type>SMEE_ALIGN_TYPE_ENUM </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Align Type</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_wa_align.align_type</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_SUBSTRATE_SIZE_ENUM </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Wafer Size</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_wa_align.wafer_size</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Mark Pos X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.mark_nominal_pos.x</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="mm">Mark Pos Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.mark_nominal_pos.y</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_BOOL</type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Do Auto Focus</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_wa_align.oa_align_recipe.do_auto_focus</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_BOOL</type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Perform Vert Compensation</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_wa_align.oa_align_recipe.perform_vert_compensation</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E3.0</step>
+			<label unit="um">Vert Compensation</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.oa_align_recipe.vert_compensation</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_DOUBLE </type>
+			<interval default="none">none</interval>
+			<step>1E6</step>
+			<label unit="%">Matching Rate</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_wa_align.oa_align_recipe.matching_rate</members>
+		</attribute>
+		<attribute value="IN">
+			<type>SMEE_CHAR  </type>
+			<interval default="none">none</interval>
+			<step>none</step>
+			<label unit="none">Template File</label>
+			<precision>none</precision>
+			<members>u_param.param_EC4T_wa_align.oa_align_recipe.template_file[128]</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="pixel">Mark Pos In CCD X</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.mark_pos_in_ccd.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="pixel">Mark Pos In CCD Y</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.mark_pos_in_ccd.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Pos In WZCS X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.mark_pos_in_wzcs.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Pos In WZCS Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.mark_pos_in_wzcs.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="%">Match Rate</label>
+			<precision>6</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.match_rate</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Align Pos X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.align_pos.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Align Pos Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.align_pos.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Align Pos Rz</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.align_pos.rz</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Ws Mean Pos X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.ws_meas_pos.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Ws Mean Pos Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.ws_meas_pos.y</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Ws Mean Pos Rz</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.ws_meas_pos.rz</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Offset In WSCS X</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.mark_offset_in_wscs.x</members>
+		</attribute>
+		<attribute value="OUT">
+			<type>SMEE_DOUBLE </type>
+			<label unit="mm">Mark Offset In WSCS Y</label>
+			<precision>3.0</precision>
+			<members>u_param.param_EC4T_wa_align.align_result_p.mark_offset_in_wscs.y</members>
+		</attribute>
+	</fun_name>
+</fun_info>
