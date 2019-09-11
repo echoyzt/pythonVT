@@ -6,45 +6,108 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>213</height>
+    <width>760</width>
+    <height>442</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Prepare</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="5" column="0" colspan="5">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_ok">
+       <property name="text">
+        <string>OK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_cancel">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
    <item row="0" column="0">
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
+    <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>接口头文件位置：</string>
+      <string>项目名(eg:506,301c)</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QLineEdit" name="xx4a_qle"/>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="projectName_qle"/>
    </item>
-   <item row="1" column="2">
-    <widget class="QPushButton" name="xx4a_qpb">
+   <item row="1" column="0" colspan="3">
+    <widget class="QLabel" name="label_4">
      <property name="text">
-      <string>XX4A</string>
+      <string>确定临时文件夹路径,统一存放本次操作的生成文件(格式:temp_项目名+'VT'+组件名,eg:temp_506VTAE)</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2">
-    <widget class="QLineEdit" name="xx4t_qle"/>
-   </item>
-   <item row="2" column="2">
-    <widget class="QPushButton" name="xx4t_qpb">
+   <item row="2" column="4">
+    <widget class="QPushButton" name="tempdir_qpb">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>120</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="text">
-      <string>XX4T</string>
+      <string>1.文件夹路径</string>
      </property>
     </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>组件名(eg:AE,WS)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="4">
+    <widget class="QPushButton" name="headfiles_qpb">
+     <property name="maximumSize">
+      <size>
+       <width>120</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>头文件路径(4A/4T)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QLineEdit" name="tempdir_qle"/>
    </item>
    <item row="3" column="0" colspan="3">
+    <widget class="QLineEdit" name="headfilexx4x_if_qle"/>
+   </item>
+   <item row="4" column="0" colspan="2">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -57,25 +120,34 @@
      </property>
     </spacer>
    </item>
-   <item row="4" column="0">
-    <spacer name="horizontalSpacer">
+   <item row="2" column="3">
+    <spacer name="horizontalSpacer_2">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>263</width>
+       <width>40</width>
        <height>20</height>
       </size>
      </property>
     </spacer>
    </item>
-   <item row="4" column="2">
-    <widget class="QPushButton" name="copyToTempDir_qpb">
-     <property name="text">
-      <string>拷贝到临时文件夹</string>
+   <item row="3" column="3">
+    <spacer name="horizontalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
-    </widget>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="3" colspan="2">
+    <widget class="QLineEdit" name="componentName_qle"/>
    </item>
   </layout>
  </widget>

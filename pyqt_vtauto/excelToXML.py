@@ -1,6 +1,6 @@
-import re
-import os
+import re,os
 from xml.dom.minidom import Document  # ?
+#from PyQt5.QtWidgets import *
 #from xml.dom.minidom import parse
 import xml.dom.minidom
 import collectExcelInfo
@@ -36,21 +36,23 @@ dictBaseUnit = \
 dict_SIUnit =  ('m','m/s','Hz','rad','J''J/m2','K','s')
 
 def excel_to_xml(curpath):
-    fp = open((os.sep).join([curpath,'excelFunsXml.xml']), 'w')
+    fp = open((os.sep).join([curpath,'10excelFunsForCpp.xml']), 'w')
     doc = Document()  # 在内存中创建dom文档
     fun_info_root = doc.createElement('fun_info')  # 创建根节点fun_info
     doc.appendChild(fun_info_root)  # 根节点添加到dom树。
-
+    print('collectExcelInfo.funs_list_sh1_tuple=',collectExcelInfo.funs_list_sh1_tuple)
+    print('collectExcelInfo.dict_funsShee2.keys()=',list(collectExcelInfo.dict_funsShee2.keys()))
     for index in range(len(collectExcelInfo.funs_list_sh1_tuple)):#第一层循环，接口个数。
         nodeFunName = doc.createElement('fun_name')
         funName = list(collectExcelInfo.dict_funsShee2.keys())[index]
+        print("writting ["+funName+"] to 10excelFunsForCpp.xml...")
         nodeFunName.setAttribute('name', funName)
         funs_value = collectExcelInfo.dict_funsShee2[funName]
-        codeStr = 'u_param.param_' + funName
+        #codeStr = 'u_param.param_' + funName
         #nodeParameter = doc.createElement('parameter')
         for params_num in range(len(funs_value)):  # 第二层循环，参数个数
             parameterlist = []
-            parameterlist.append(codeStr)
+            #parameterlist.append(codeStr)
             # 给节点attribute设置文本节点
             nodeAttribute = doc.createElement('attribute')
             #nodeAttribute.appendChild(doc.createTextNode(funs_value[params_num][1]))
@@ -108,7 +110,7 @@ def excelToXmlForUi(workbook,pageList1Index,
                     dicEnum,
                     curpath):
     sh1 = workbook.sheet_by_index(1)
-    fp = open((os.sep).join([curpath,'excelXmlForUi.xml']), 'w')
+    fp = open((os.sep).join([curpath,'11excelXmlForUi.xml']), 'w')
     doc = Document()  # 在内存中创建dom文档
     fun_info_root = doc.createElement('pageInfo')  # 创建根节点fun_info
     doc.appendChild(fun_info_root)  # 根节点添加到dom树。
@@ -116,6 +118,7 @@ def excelToXmlForUi(workbook,pageList1Index,
         nodePageName = doc.createElement('pageName')
         pageName = list(pageList1Index.keys())[pageIndex]
         nodePageName.setAttribute('pageId', pageName)
+
         for labelIndex in range(len(dictlayout[pageName])):
             nodeFirstTab = doc.createElement('firstTab')
             nodeFirstTab.setAttribute('tableName', dictlayout[pageName][labelIndex])
@@ -156,7 +159,6 @@ def excelToXmlForUi(workbook,pageList1Index,
                         if '_ENUM' not in paramType:
                             nodeParamType.appendChild(doc.createTextNode(paramType))
                         else:
-
                             nodeParamType.setAttribute('enumName', paramType)
                             if paramType in dicEnum.keys():
                                 #print('paramType = ', paramType)
@@ -167,7 +169,6 @@ def excelToXmlForUi(workbook,pageList1Index,
                                         enumMemberUi = dict_enumForUi[enumMember]
                                         nodeEnumMember.appendChild(doc.createTextNode(enumMemberUi))
                                         nodeParamType.appendChild(nodeEnumMember)
-
                                     else:
                                         nodeEnumMember.appendChild(doc.createTextNode(enumMember))
                                         nodeParamType.appendChild(nodeEnumMember)
@@ -211,7 +212,6 @@ def excelToXmlForUi(workbook,pageList1Index,
                         nodeParamPrecision = doc.createElement('ParamPrecision')
                         nodeParamPrecision.appendChild(doc.createTextNode(str(dicFunInfoSh2[funName][paramIndex][6])))
 
-
                         nodeParamType = doc.createElement('paramType')
 
                         paramType = dicFunInfoSh2[funName][paramIndex][3]
@@ -230,8 +230,7 @@ def excelToXmlForUi(workbook,pageList1Index,
                                     else:
                                         nodeEnumMember.appendChild(doc.createTextNode(enumMember))
                                         nodeParamType.appendChild(nodeEnumMember)
-                            else:
-                                pass
+                            else:pass
                         nodeParamLabel.appendChild(nodeParamObjectName)
                         nodeParamLabel.appendChild(nodeParamUnit)
                         nodeParamLabel.appendChild(nodeParamAttr)
@@ -245,22 +244,38 @@ def excelToXmlForUi(workbook,pageList1Index,
     doc.writexml(fp, indent="", addindent='\t', newl='\n')
     fp.close()
 
-#dom 解析excelFunsXml.xml,用于生成cpp文件。
+#dom 解析10excelFunsXml.xml,用于生成cpp文件。
 # updateWindowData,performButtonClickedSlot,ini,m_exec_...
 def xmlToBottomCpp(CCNAME,
                    dict_pages,
                    dict_enum,
                    dict_funs,
+                   dict_enumForUi,
                    dict_table_params,
                    curpath,
                    log):
+
     # minidom 解析器打开 XML 文件。
-    DOMTree = xml.dom.minidom.parse(curpath+"/"+"excelFunsXml.xml")
+    DOMTree = xml.dom.minidom.parse(curpath+"\\"+"10excelFunsForCpp.xml")
     funInfo = DOMTree.documentElement
     funNames = funInfo.getElementsByTagName("fun_name")
     #print('funNames=',funNames[0])
+    temp_outpath=curpath+ "\\Outcodefiles"
+    if os.path.exists(temp_outpath):pass
+    else:
+        os.mkdir(temp_outpath)
+        if (os.path.exists(temp_outpath)):
+            print("Outcodefiles 创建成功")
+            #QMessageBox.warning(self, "创建文件夹", "文件夹Outcodefiles创建成功.")
+        else:
+            print("Outcodefiles 创建失败")
+            #QMessageBox.warning(self, "创建文件夹", "文件夹Outcodefiles创建失败！")
+
     fileIni = open((os.sep).join([curpath, "Outcodefiles", "VT" + CCNAME + '.ini']), 'w')
     fileIni.write('#属性值,    最大最小值,   默认值,  精度,   singleStep\n')
+    if len(dict_pages.keys()) == 0:
+        dict_pages=collectExcelInfo.dict_pages
+
     for pageIndex in range(len(list(dict_pages.keys()))):
         pages = list(dict_pages.keys())[pageIndex]
         log.write('=======正在生成导航页 %s 的 cpp代码文件...========\n')
@@ -280,6 +295,7 @@ void %sVT%s::updateWindowData()//slot
 	\tswitch (button_id)\n\t\t{\n'''%(CCNAME,pages))
         fileIni.write('#%s\n' % pages)
         for i in range(len(dict_pages[pages])):
+            print("dict_pages[%s]=%s"%(pages,dict_pages[pages]))
             bottomFile.write('\tcase %s:\n' % (dict_pages[pages][i].upper()))
             fileExec.write('''void %sVT%s::m_exec_%s()\n\t{       
         int error_code = OK;
@@ -294,17 +310,13 @@ void %sVT%s::updateWindowData()//slot
                     temp_table_list_out = []
                     temp_table_list_in = []
                     templistCheckIsValid = []
-
                     attribute = funname.getElementsByTagName("attribute")
-
                     for attr in attribute:
                         paramAttr = attr.getAttribute("value")
                         #print("paramAttr= %s" % paramAttr)
                         type = (attr.getElementsByTagName('type')[0]).childNodes[0].data
                         labels = attr.getElementsByTagName('label')
-
                         if paramAttr.upper() == 'OUT':
-
                             precision = (attr.getElementsByTagName('precision')[0]).childNodes[0].data
                             member = (attr.getElementsByTagName('members')[0]).childNodes[0].data
                             member1 = member[14:]
@@ -320,10 +332,13 @@ void %sVT%s::updateWindowData()//slot
                                 unit = label.getAttribute('unit')
                                 #print('unit=', unit)
                                 if unit in dictBaseUnit.keys():
-                                    bottomFile.write('\t\t%s_qle->setText(QString("%%1").arg(%s(%s),0,'f',%s));\n'
+                                    bottomFile.write('\t\t%s_qle->setText(QString("%%1").arg(%s(%s),0,\'f\',%s));\n'
                                                 % (member2, dictBaseUnit[unit][0], member, precision))
                                 elif unit == 'none':
-                                    bottomFile.write('\t%s_qle->setText(QString("%%1").arg(%s);\n' % (member2, member))
+                                    if '_ENUM' in type:
+                                        bottomFile.write('switch(%s)\n\t{\n\t case %s:'%(member,dict_enumForUi[type]))
+                                    else:
+                                        bottomFile.write('\t%s_qle->setText(QString("%%1").arg(%s);\n' % (member2, member))
 
 
                         elif paramAttr.upper() == 'IN':
@@ -483,20 +498,24 @@ void %sVT%s::updateWindowData()//slot
                                             %s = cell_p->text().toString();''' % (
                                         fun+'in', k, temp_table_list_in[k].replace(list(set_macro)[0], 'm')))
                                 fileExec.write('\n\t\t}\n')
-
-
                 else:pass
             bottomFile.write('\n\t\tbreak;\n')
             fileExec.write('\t\t//执行函数\n')
             fileExec.write('\t\terror_code = %s('%(dict_pages[pages][i]))
+            print("pages=",pages)
+            print("dict_pages[%s][%d]=%s"%(pages,i,dict_pages[pages][i]))
+            temp=dict_pages[pages][i]
+            print("dict_funs[%s]=%s"%(temp,dict_funs[temp]))
+            print("dict_funs[dict_pages[pages][i]]",dict_funs[temp])
+            print("dict_funs[dict_pages[%s][%d]]=%s" %(pages,i,dict_funs[dict_pages[pages][i]]))
             params = list(dict_funs[dict_pages[pages][i]])
             temp_num = len(params)
             if temp_num != 0:
                 for j in range(temp_num-1):
                     fileExec.write('\n\t\t\t\tu_param.param_%s.%s,\n'%(dict_pages[pages][i],params[j][1]))
                 fileExec.write('\t\t\t\tu_param.param_%s.%s);\n'%(dict_pages[pages][i],params[temp_num-1][1]))
-            else:#接口参数为空时。
-                fileExec.write(');\n')
+            else:fileExec.write(');\n') #接口参数为空时。
+
             fileExec.write('\t\t//更新界面\n')
             fileExec.write('\t\toutputEnd(func_name,error_code);\n\t}\n')
 
@@ -511,7 +530,7 @@ void %sVT%s::updateWindowData()//slot
         fileButtonClick.write('\n\t\t\t\tbreak;\n\t\t}\n\t}')
         fileIni.write('#end\n')
         cppfilepath = generateCodefile.pageTopCppCode(CCNAME,curpath,dict_pages,pages)
-        #print('cppfilepath = ',cppfilepath)
+        print('cppfilepath = ',cppfilepath)
         copyFunsToCpp(cppfilepath,
                       bottomFile,
                       fileRange,

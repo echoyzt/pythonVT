@@ -35,88 +35,86 @@ def codefileUniversal(CCNAME,author,pagenames,curpath):
 
 
     file3.write('''
-    #ifndef _VT_H_
-    #define _VT_H_
-    #include <QButtonGroup>
-    #include "smee.h"
-    #include "Widget.h"
-    #include "ui_VT.h"
-    #include "ui_%sVTCategory.h"
-    #include "PerformFunctionThread.h"
-    #include <TR4A_tc.h>
+#ifndef _VT_H_
+#define _VT_H_
+#include <QButtonGroup>
+#include "smee.h"
+#include "Widget.h"
+#include "ui_VT.h"
+#include "ui_%sVTCategory.h"
+#include "PerformFunctionThread.h"
+#include <TR4A_tc.h>
     '''%(CCNAME))
 
     for index in range(len(pagenames)):
-        file3.write("# include \"VT%s.h\"+'\n'"%(CCNAME))
+        file3.write("# include \"VT%s.h\"+\n"%(CCNAME))
     file3.write('''
-    typedef enum
-    {
-        FUN_MIN_PAGE = 0  , 
-    ''')
+typedef enum
+{
+    FUN_MIN_PAGE = 0, 
+''')
     for index in range(len(pagenames)):
-        file3.write("%s_PAGE,+'\n'"%(pagenames[index].upper()))
-
+        file3.write("%s_PAGE,+\n"%(pagenames[index].upper()))
     file3.write('''
-     FUNC_PAGE_MAX
-    }FUNC_PAGE_ENUM;
-    //线程执行函数参数打包结构体
-    typedef struct
-    {
-        QObject * executor;
-        int pageIndex;
-        int funcCode;
-    }PERFORM_FUNC_PARAM_STRUCT;
-    class VT;
-    class VTCategory;
-    class PerformFunctionThread;
-    class VT : public SMEE::Widget, public  Ui::VT
-    {
-        Q_OBJECT
-    public:
-        VT(QWidget *parent = 0);
-        ~VT();
-        QWidget * getSideWidget( void ); //连接导航页面,供外部使用
-        static void execute(void * param);
-        private slots:
-            // 侧栏页面选择函数
-            void switchFuncPageSlot(int pageIndex);
-            //关闭所有页面
-            void closeWindowSlot();
-            void outputLogSlot(int flag,const QString title,const QString text);
-            void peformFuncSlot(int funcCode);
-            void disableLogoutButtonSlot();//线程开始禁用logout按钮
-            void enableLogoutButtonSlot();//线程结束启用logout按钮
-    private:
-        QHash<int, QWidget*> m_FunctionPageHash;
-        VTCategory * m_pCategory;
-        VTGeneral  *m_VTGeneral;
-        SMEE::PerformFunctionThread * m_Thread_p;
-    signals:
-        void errorLogSignal(const QString systemName, const QString description, const int exceptionCode);
-        /* - true	线程开始,OIMA界面logout进入锁定状态
-         * - false	线程结束,OIMA界面logout解除锁定状态
-         */
-        void lockLogout (bool flags);
-    };
-    //VT侧栏界面类
-    class VTCategory : public QWidget, public Ui::VTCategory
-    {
-        Q_OBJECT
-    public:
-        VTCategory(QWidget * parent = 0);
-        ~VTCategory();
-    private:
-        QButtonGroup * m_ButtonGroup_p ; //侧栏按钮组对象指针
-    
-    signals:
-        void closeWindowSignal();
-        void buttonClicked(int index);
+    FUNC_PAGE_MAX
+}FUNC_PAGE_ENUM;
+//线程执行函数参数打包结构体
+typedef struct
+{
+    QObject * executor;
+    int pageIndex;
+    int funcCode;
+}PERFORM_FUNC_PARAM_STRUCT;
+class VT;
+class VTCategory;
+class PerformFunctionThread;
+class VT : public SMEE::Widget, public  Ui::VT
+{
+    Q_OBJECT
+public:
+    VT(QWidget *parent = 0);
+    ~VT();
+    QWidget * getSideWidget( void ); //连接导航页面,供外部使用
+    static void execute(void * param);
     private slots:
+        // 侧栏页面选择函数
+        void switchFuncPageSlot(int pageIndex);
+        //关闭所有页面
+        void closeWindowSlot();
+        void outputLogSlot(int flag,const QString title,const QString text);
+        void peformFuncSlot(int funcCode);
+        void disableLogoutButtonSlot();//线程开始禁用logout按钮
+        void enableLogoutButtonSlot();//线程结束启用logout按钮
+private:
+    QHash<int, QWidget*> m_FunctionPageHash;
+    VTCategory * m_pCategory;
+    VTGeneral  *m_VTGeneral;
+    SMEE::PerformFunctionThread * m_Thread_p;
+signals:
+    void errorLogSignal(const QString systemName, const QString description, const int exceptionCode);
+    /* - true	线程开始,OIMA界面logout进入锁定状态
+    * - false	线程结束,OIMA界面logout解除锁定状态
+    */
+    void lockLogout (bool flags);
+};
+//VT侧栏界面类
+class VTCategory : public QWidget, public Ui::VTCategory
+{
+    Q_OBJECT
+public:
+    VTCategory(QWidget * parent = 0);
+    ~VTCategory();
+private:
+    QButtonGroup * m_ButtonGroup_p ; //侧栏按钮组对象指针
+signals:
+    void closeWindowSignal();
+    void buttonClicked(int index);
+private slots:
     void disableCloseButtonSlot();//线程开始禁用close按钮
     void enableCloseButtonSlot();//线程结束启用close按钮
-    };
-    #endif
-    ''')
+};
+#endif
+''')
 
     file4.write('''
     /**************************************************************************
@@ -339,14 +337,14 @@ def pageCodeHeadFiles(CCNAME,
 * 概要描述 :
 * 历史记录 :
 * 版本        日期                      作者          内容
-*  ?          %s               %s            创建
+*  ?          %s                         %s           创建
 **************************************************/
 #ifndef _%sVT_%s_H_
 #define _%sVT_%s_H_
 #include "SMEE_Gui.h"
 #include <QThread>
 #include "ui_%sVT%s.h"      
-        '''%(year, CCNAME, CCNAME, CCNAME, year_mouth_day, author,CCNAME,CCNAME,CCNAME,CCNAME,CCNAME,CCNAME))
+        '''%(year, CCNAME,CCNAME,CCNAME, year_mouth_day, author,CCNAME,pagenames[i].upper(),CCNAME,pagenames[i].upper(),CCNAME,pagenames[i]))
 
         if b_xx4a:
             head_file.write('''
@@ -354,7 +352,7 @@ def pageCodeHeadFiles(CCNAME,
             head_file.write(r'#include "%s4A_tc.h"'% (CCNAME)+'\n' )
         else:pass
         if b_xx4t:
-            head_file.write("#include \"%s4T_if.h\""%(CCNAME)+'\n')
+            head_file.write("\n#include \"%s4T_if.h\""%(CCNAME)+'\n')
             head_file.write("#include \"%s4T_tc.h\""%(CCNAME) +'\n')
         else:pass
         head_file.write('''//*******输入输出参数联合体定义************************/
@@ -369,7 +367,7 @@ typedef union
             fun_params_list = list(dict_funs[funsNameList[index_funs]])
             #print("fun_params_list=",fun_params_list)
             for  index_params in range(len(fun_params_list)):
-                head_file.write("       %s %s;" %(fun_params_list[index_params][0],fun_params_list[index_params][1])+'\n')
+                head_file.write("       %s %s;" %(fun_params_list[index_params][1],fun_params_list[index_params][2])+'\n')
 
             head_file.write("    }param_%s;"%(funsNameList[index_funs])+'\n')
         head_file.write('''}%sVT_%s_PARAM_UNION;
@@ -413,14 +411,14 @@ protected slots:
         for funs_index in range(len(dict_pages[pagenames[i]])):
             head_file.write('''
     void m_exec_%s();'''%(funsNameList[funs_index]))
-        head_file.write('''signals:
+        head_file.write('''\nsignals:
     void send_log(int flag,const QString title,const QString text);
     void performFuncSignal(int funcCode);
 private:
     %sVT_%s_FUNCTION_CODE_ENUM m_func;
     %sVT_%s_PARAM_UNION u_param;
     QButtonGroup  *SwichButtonG ; //侧栏按钮组对象指针 
-    };
+};
 #endif
         '''%(CCNAME,pagenames[i].upper(),CCNAME,pagenames[i].upper()))
         head_file.close()

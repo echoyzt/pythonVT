@@ -1,15 +1,15 @@
 import xml.dom.minidom
 import os
-def xmlToUi(CCNAME,filepath,dict_pages):
+def xmlToUi(CCNAME,filepath):
     # minidom 解析器打开 XML 文件。
-    DOMTree = xml.dom.minidom.parse(filepath+'/'+"excelXmlForUi.xml")
+    DOMTree = xml.dom.minidom.parse(filepath+'\\'+"11excelXmlForUi.xml")
     pageInfo = DOMTree.documentElement
     pageNames = pageInfo.getElementsByTagName("pageName")
     #print('pageNames =',pageNames)
 
     for pageName in pageNames:
         page = pageName.getAttribute("pageId")
-        file_ui = open((os.sep).join([filepath, "Outcodefiles", "VT" + CCNAME +page+ '.ui']), 'w')
+        file_ui = open((os.sep).join([filepath, "Outcodefiles",CCNAME+ "VT" +page+ '.ui']), 'w')
         write_Qwidget(file_ui,CCNAME,page)
         firstTabs = pageName.getElementsByTagName("firstTab")
 

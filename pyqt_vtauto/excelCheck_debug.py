@@ -45,7 +45,6 @@ styleWhite.font=font1
 #style2 = PatternFill(fill_type='solid',start_color='FFFF8C00',end_color='FFFF8C00') # 表格样式，填充桔色底。错误
 #style3 = PatternFill(fill_type='solid',start_color='FFFFFFFF',end_color='FFFFFFFF') # 表格样式，填充白底。
 #style4 = PatternFill(fill_type='solid',start_color='FFFFFF00',end_color='FFFFFF00') # 表格样式，填充黄底。警告
-
 # 收集信息：所有参数的输入输出属性，参数类型，单位，默认值，精度，范围，步长，单位转换。
 def oldwsExcelInformation(sheet2,row_num,check_result):
     attribute = []
@@ -88,7 +87,7 @@ def oldwsExcelInformation(sheet2,row_num,check_result):
 输出
     有无范围-->none，默认值，步长-->none
 '''
-def preProcessExcel(newws):
+def preProcessExcel(newws,check_result):
     for i in range(len(param_basket)):
         #对精度的处理，
         if 'SMEE_FLOAT' ==param_basket[i][1] or \
@@ -271,7 +270,7 @@ def checkRange(ws,check_result):
 def funsIndex1(oldwb,CCNAME):
     sh1 = oldwb.sheet_by_index(1)
     rownumsh1=sh1.nrows
-    #记录列表包含的所有接口。
+    #记录sh1所有接口。
     for num in range(5, rownumsh1):
         if sh1.cell(num, 4).value != "":
             fun_list_sh1.append(str(sh1.cell(num, 4).value).strip())
@@ -284,14 +283,12 @@ def funsIndex1(oldwb,CCNAME):
             global bool_XX4A
             bool_XX4A = True
             continue
-        else:
-            pass
+        else:pass
         if CCNAME + "4T" == fun_list_sh1[i][0:4]:
             global bool_XX4T
             bool_XX4T = True
             continue
-        else:
-            pass
+        else:pass
 
 def funsIndex2(oldwb,m_row_num):
     sh2 = oldwb.sheet_by_index(2)
@@ -365,7 +362,7 @@ if __name__ == '__main__':
             newws.write(i, (j + 1), cell_value, styleWhite)
 
     oldwsExcelInformation(oldws,m_row_num)
-    preProcessExcel(newws)#对精度，单位的处理，都可以先行检查。
+    preProcessExcel(newws)#对精度，单位的处理，可以先行检查。
     checkRange(newws)#对范围进一步检查
 
 
