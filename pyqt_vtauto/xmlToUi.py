@@ -47,36 +47,38 @@ def xmlToUi(CCNAME,filepath):
                 #print('paramLabels=', paramLabels)
                 for index,paramLabel in enumerate(paramLabels):
                     labelId = paramLabel.getAttribute('paramLabelId')
-                    objName = (paramLabel.getElementsByTagName('paramObjectName')[0].childNodes[0].data)
-                    paramUnit = (paramLabel.getElementsByTagName('paramUnit')[0].childNodes[0].data)
-                    paramAttr = (paramLabel.getElementsByTagName('paramAttr')[0].childNodes[0].data)
-                    ParamPrecision = (paramLabel.getElementsByTagName('ParamPrecision')[0].childNodes[0].data)
+                    if labelId !='none':
+                        objNamestr = (paramLabel.getElementsByTagName('paramObjectName')[0].childNodes[0].data)
+                        objName=objNamestr.split('_u_param_param_')[1]
+                        paramUnit = (paramLabel.getElementsByTagName('paramUnit')[0].childNodes[0].data)
+                        paramAttr = (paramLabel.getElementsByTagName('paramAttr')[0].childNodes[0].data)
+                        ParamPrecision = (paramLabel.getElementsByTagName('ParamPrecision')[0].childNodes[0].data)
 
-                    if(paramLabel.getElementsByTagName('paramType')[0].hasAttribute('enumName')):
-                        paramType = paramLabel.getElementsByTagName('paramType')[0].getAttribute('enumName')
-                    else:
-                        paramType = (paramLabel.getElementsByTagName('paramType')[0].childNodes[0].data)
+                        if(paramLabel.getElementsByTagName('paramType')[0].hasAttribute('enumName')):
+                            paramType = paramLabel.getElementsByTagName('paramType')[0].getAttribute('enumName')
+                        else:
+                            paramType = (paramLabel.getElementsByTagName('paramType')[0].childNodes[0].data)
 
-                    for count in range(2):#每个参数分标签和参数显示位于第0,1列。
-                        if count == 0:
-                            write_Label(file_ui,index,count,objName,labelId,paramUnit)
-                        if count == 1:
-                            file_ui.write('        <item row="%d" column="%d">\n' % (index, count))
-                            if paramAttr =='IN':
-                                if paramType == 'SMEE_INT32':
-                                    write_SpinBox(file_ui,objName)
-                                if paramType == 'SMEE_DOUBLE':
-                                    write_DoubleSpinBox(file_ui,objName)
-                                if paramType == 'SMEE_BOOL':
-                                    write_CheckBox(file_ui,objName)
-                                if '_ENUM' in paramType:
-                                    paramTypes = paramLabel.getElementsByTagName('paramType')
-                                    for paramType in paramTypes:
-                                        if paramType.hasChildNodes():
-                                            write_ComboBox(file_ui,paramType,objName)
-                                file_ui.write('        </item>\n')
-                            else:
-                                write_StatusLine(file_ui, objName)
+                        for count in range(2):#每个参数分标签和参数显示位于第0,1列。
+                            if count == 0:
+                                write_Label(file_ui,index,count,objName,labelId,paramUnit)
+                            if count == 1:
+                                file_ui.write('        <item row="%d" column="%d">\n' % (index, count))
+                                if paramAttr =='IN':
+                                    if paramType == 'SMEE_INT32':
+                                        write_SpinBox(file_ui,objName)
+                                    if paramType == 'SMEE_DOUBLE':
+                                        write_DoubleSpinBox(file_ui,objName)
+                                    if paramType == 'SMEE_BOOL':
+                                        write_CheckBox(file_ui,objName)
+                                    if '_ENUM' in paramType:
+                                        paramTypes = paramLabel.getElementsByTagName('paramType')
+                                        for paramType in paramTypes:
+                                            if paramType.hasChildNodes():
+                                                write_ComboBox(file_ui,paramType,objName)
+                                    file_ui.write('        </item>\n')
+                                else:
+                                    write_StatusLine(file_ui, objName)
 
                 write_Perform(file_ui,temp_fun,temp_row)
 
@@ -168,13 +170,13 @@ def write_StatusLine(file_ui,objName):
     file_ui.write('         <widget class="SMEE::StatusLine" name="%s_qle">\n'%(objName))
     file_ui.write('          <property name="minimumSize">\n')
     file_ui.write('           <size>\n')
-    file_ui.write('            <width>180</width>\n')
+    file_ui.write('            <width>220</width>\n')
     file_ui.write('            <height>25</height>\n')
     file_ui.write('           </size>\n')
     file_ui.write('          </property>\n')
     file_ui.write('          <property name="maximumSize">\n')
     file_ui.write('           <size>\n')
-    file_ui.write('            <width>180</width>\n')
+    file_ui.write('            <width>220</width>\n')
     file_ui.write('            <height>25</height>\n')
     file_ui.write('           </size>\n')
     file_ui.write('          </property>\n')

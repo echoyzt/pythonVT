@@ -37,6 +37,9 @@ pattern3=re.compile(re_del)
 re_dot="[,|;]"
 pattern4=re.compile(re_dot)
 
+re_funDefineEnd="\)\s*;"
+pattern5=re.compile(re_funDefineEnd)
+
 re_nullString="\S" #非空字符
 patNullString=re.compile(re_nullString)
 
@@ -46,9 +49,7 @@ patEndEnum=re.compile(re_endEnum)
 re_endStruct="^}.*_STRUCT$"
 patEndStruct=re.compile(re_endStruct)
 
-
-
-# pre4A_if.h,pre4T_if.h
+#3temp_preProcess 保存需要的所有头文件接口，去空格。
 def preprocess_header_files(CCNAME,filepath,existXX4A,existXX4T):
     filePreHeader = open((os.sep).join([filepath, "3temp_preProcess"]), 'w')
     print("mainwindow.existXX4A=", existXX4A)
@@ -82,7 +83,7 @@ def generate_requirefuns_tempfile( filepath,dict_pageToFuns,log):
     for index in range(len(dict_pageToFuns.values())):
         for funs in range(len(list(dict_pageToFuns.values())[index])):
             funslist.append(list(dict_pageToFuns.values())[index][funs])
-    print("funlist=",funslist)
+    print("funslist=",funslist)
     for funname in funslist:
         temp_parameter_list = []
         ExcelFunInFile(file,funname,temp_parameter_list,log)
@@ -94,9 +95,16 @@ def dict_pageToFuns_fromExcel(funslist,filepath,log ):
     for funname in funslist:
         temp_parameter_list = []
         ExcelFunInFile(file, funname, temp_parameter_list, log)
+    print("dict_funs = ", dict_funs)
     log.write("\n界面所得接口信息字典：\n dict_funs =%s\n " % (dict_funs))  # 接口和接口参数字典。
     file.close()
 
+'''
+SMEE_EXPORT  SMEE_INT32  LB4A_set_spots_valid(IN LB4A_FOCUS_TYPE_ENUM eFSFocusType,
+											  IN LB4A_SPOTS_VALID_STRUCT *pstSpotsValid);对
+											  
+SMEE_EXPORT SMEE_INT32 IP4T_get_detect_pulse_energy(OUT SMEE_DOUBLE *ed1_detect_energy, OUT SMEE_DOUBLE *ed2_detect_energy);	错										  
+'''
 def ExcelFunInFile(file,funname,temp_parameter_list,log):
     file.seek(0)
     line_info = file.readline()
@@ -112,12 +120,12 @@ def ExcelFunInFile(file,funname,temp_parameter_list,log):
                 tline3=(tline2[tline2.find('SMEE_INT32')+10:]).strip()
 
             if funname==tline3:
-                print("funname=%s,tline3=%s\n" % (funname, tline3))
                 log.write(line_info)  # 只将需要刷代码的接口写到文件中。
                 #print("4a start SMEE_EXPORT = ",line_info)
                 line_info = file.readline()
                 if '(IN ' in start_smee_export_line or '(OUT ' in start_smee_export_line or '(INOUT ' in start_smee_export_line:
-                    sub_smee_export_line = start_smee_export_line[start_smee_export_line.find('(') + 1:-2]
+                    sub_smee_export_line = start_smee_export_line[start_smee_export_line.find('(') + 1:-3]
+                    print('sub_smee_export_line=%s' %(sub_smee_export_line))
                     temp_sub = sub_smee_export_line.replace(' *', ' ')
                     list_funsValue = temp_sub.split(' ')
                     temp_parameter_list.append(list_funsValue)
@@ -125,12 +133,18 @@ def ExcelFunInFile(file,funname,temp_parameter_list,log):
                 while "IN " in line_info or "OUT " in line_info or "INOUT " in line_info:
                     line_info_strip = line_info.strip()  # 去掉两边空格。
                     temp_sub = line_info_strip.replace(' *', ' ')
-                    sub_line_info_lstrip = temp_sub[:-1]  # 去掉 ；\n
+                    if pattern5.search(temp_sub):
+                        sub_line_info_lstrip = temp_sub[:temp_sub.find(')')]  # 去掉 )；\n
                     list_sub_line_info_lstrip = sub_line_info_lstrip.split(' ')
+                    print ('list_sub_line_info_lstrip=%s' %(list_sub_line_info_lstrip))
                     temp_parameter_list.append(list_sub_line_info_lstrip)
                     log.write(line_info)
+
                     line_info = file.readline()
-                    if not (line_info): break
+                    if pattern5.search(temp_sub):break
+                    else:
+                        if not (line_info): break #空行退出循环
+
                 dict_funs[funname] = temp_parameter_list  # 键值对
                 file.seek(0)
                 break
@@ -150,8 +164,6 @@ def ExcelFunInFile(file,funname,temp_parameter_list,log):
                 line_info = file.readline()
                 line_info2 = line_info.lstrip()  # 去掉左边空格。
                 if not (line_info): break
-    print("dict_funs = ", dict_funs) #???
-
 
 
 # 分别新建三个字典 dict_struct,dict_enum，dict_macro。

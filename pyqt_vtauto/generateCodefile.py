@@ -1,5 +1,4 @@
-import time
-import os
+import time,os,re, os
 
 year = time.strftime('%Y', time.localtime(time.time()))
 year_mouth_day = time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -321,7 +320,7 @@ def pageCodeHeadFiles(CCNAME,
                       pagenames,
                       b_xx4a,
                       b_xx4t,
-                      dict_pages,
+                      dict_page_fun,
                       dict_funs,
                       curpath,
                       log):
@@ -355,29 +354,35 @@ def pageCodeHeadFiles(CCNAME,
             head_file.write("\n#include \"%s4T_if.h\""%(CCNAME)+'\n')
             head_file.write("#include \"%s4T_tc.h\""%(CCNAME) +'\n')
         else:pass
-        head_file.write('''//*******输入输出参数联合体定义************************/
+        tlist=[]
+        for jj in range(len(dict_funs.keys())):
+            tlist.append([])
+        print ('tlist= %s dict_funs.values=%s' %(tlist,dict_funs.values()))
+        if dict_funs.values() != tlist:
+            head_file.write('''//*******输入输出参数联合体定义************************/
 typedef union
 {'''+'\n')
-        log.write("len(dict_pages[%s]) = %d\n" %(pagenames[i],len(list(dict_pages[pagenames[i]]))))
-        funsNameList = list(dict_pages[pagenames[i]])#各页面包含的接口列表。
-        log.write("funsNameList=%s\n"%(funsNameList))
-        for index_funs in range(len(funsNameList)): #各页面对应的接口的个数。
-            head_file.write(''' struct
+            log.write("len(dict_page_fun[%s]) = %d\n" %(pagenames[i],len(list(dict_page_fun[pagenames[i]]))))
+            funsNameList = list(dict_page_fun[pagenames[i]])#各页面包含的接口列表。
+            log.write("funsNameList=%s\n"%(funsNameList))
+            for index_funs in range(len(funsNameList)): #各页面对应的接口的个数。
+                print('dict_funs[funsNameList[index_funs]]=',dict_funs[funsNameList[index_funs]])
+                if dict_funs[funsNameList[index_funs]] !=[]:
+                    head_file.write(''' struct
     {'''+'\n')
-            fun_params_list = list(dict_funs[funsNameList[index_funs]])
-            #print("fun_params_list=",fun_params_list)
-            for  index_params in range(len(fun_params_list)):
-                head_file.write("       %s %s;" %(fun_params_list[index_params][1],fun_params_list[index_params][2])+'\n')
-
-            head_file.write("    }param_%s;"%(funsNameList[index_funs])+'\n')
+                    fun_params_list = list(dict_funs[funsNameList[index_funs]])
+                    #print("fun_params_list=",fun_params_list)
+                    for  index_params in range(len(fun_params_list)):
+                        head_file.write("       %s %s;" %(fun_params_list[index_params][1],fun_params_list[index_params][2])+'\n')
+                    head_file.write("    }param_%s;"%(funsNameList[index_funs])+'\n')
         head_file.write('''}%sVT_%s_PARAM_UNION;
         '''%(CCNAME,pagenames[i].upper()))
-
+#################################################################################################################
         head_file.write('''
 typedef enum
 {
     %sVT_%s_FUNCTION_CODE_MIN = 0,'''%(CCNAME,pagenames[i].upper()))
-        for enum_index in range(len(dict_pages[pagenames[i]])):
+        for enum_index in range(len(dict_page_fun[pagenames[i]])):
             head_file.write('''
     %s,'''%(funsNameList[enum_index].upper()))
         head_file.write('''\n    %sVT_%s_FUNCTION_CODE_MAX
@@ -401,14 +406,14 @@ protected slots:
     void updateWindowData();
     //按钮对应的槽
     void performButtonClickedSlot(int button_id);
-    private:
+private:
     //信息输出栏
     void m_log( int flag,const QString title ,const QString text);
     void outputStart( QString fun_name);
     void outputEnd( QString fun_name,int rtn);
     //执行接口函数
         '''%(CCNAME,pagenames[i],CCNAME,pagenames[i],CCNAME,pagenames[i],CCNAME,pagenames[i]))
-        for funs_index in range(len(dict_pages[pagenames[i]])):
+        for funs_index in range(len(dict_page_fun[pagenames[i]])):
             head_file.write('''
     void m_exec_%s();'''%(funsNameList[funs_index]))
         head_file.write('''\nsignals:
@@ -424,7 +429,8 @@ private:
         head_file.close()
 
 
-def pageTopCppCode(CCNAME,filepath,dict_pages,pages):
+def pageTopCppCode(CCNAME,filepath,dict_page_fun,dict_funsSheet2,pages):
+    tnumber=0
     str_class = CCNAME + 'VT' + pages
     cppfile = open(((os.sep).join([filepath, "Outcodefiles", CCNAME + "VT" + pages + ".cpp"])), 'w')
 
@@ -433,19 +439,43 @@ def pageTopCppCode(CCNAME,filepath,dict_pages,pages):
     cppfile.write('\t:SMEE::Widget(parent), m_func((%sVT_%s_FUNCTION_CODE_ENUM)(-1))\n{\n' % (CCNAME, pages.upper()))
     cppfile.write('\tsetupUi(this);\n')
     cppfile.write('\tSwichButtonG = new QButtonGroup;//创建按钮组\n')
-    for funIndex in range(len(dict_pages[pages])):
-        cppfile.write('\tSwichButtonG->addButton(%s_qpb,(int)%s);\n' % (
-        list(dict_pages[pages])[funIndex], list(dict_pages[pages])[funIndex].upper()))
+    for funIndex in range(len(dict_page_fun[pages])):
+        funname=dict_page_fun[pages][funIndex]
+        cppfile.write('\tSwichButtonG->addButton(%s_qpb,(int)%s);\n' % (funname, funname.upper()))
     cppfile.write('\tSwichButtonG->setExclusive(true);')
     cppfile.write('''
     connect(
     	SwichButtonG,
      	SIGNAL(buttonClicked(int)),
     	this,
-    	SLOT(performButtonClickedSlot(int)));\n}\n''')
+    	SLOT(performButtonClickedSlot(int)));\n''')
+    for paramindex in range(len(dict_funsSheet2[funname])):
+        rangestr=dict_funsSheet2[funname][paramindex][7]
+        m = re.search(r'\[.*\]',rangestr  )  #参数范围
+        if m:
+            tnumber+=1
+            #range = rangestr[rangestr.find('[') + 1:rangestr.find(']')]
+            if tnumber ==1:
+                cppfile.write('''
+            /*==========增加控件输入参数范围设置==========*/
+            m_spinBoxAgent = new SMEE::SpinBoxAgent("VT%s_%s",this);\n'''%(CCNAME,pages))
+            cppfile.write('m_spinBoxAgent->RegisterSpinBox(%s_qdsb,"%s");\n' %(dict_funsSheet2[funname][paramindex][0],dict_funsSheet2[funname][paramindex][0]))
+    cppfile.write('}\n')
+    if tnumber ==0:
+        cppfile.write('''
+%s::~%s()
+{
+    delete SwichButtonG;
+    SwichButtonG=NULL;\n}''' % (str_class, str_class))
+    else:
+        cppfile.write('''
+%s::~%s()
+{
+    delete SwichButtonG;
+    SwichButtonG=NULL;
+    delete m_spinBoxAgent;
+    m_spinBoxAgent=NULL;\n}'''% (str_class, str_class))
 
-
-    cppfile.write('%s::~%s(){}' % (str_class, str_class))
     cppfile.write('''
 void %s::disablePerformButtonSlot()
 {
@@ -497,12 +527,12 @@ void %s::outputEnd( QString fun_name,int rtn)
 ''' % (str_class, str_class, CCNAME, str_class, CCNAME, CCNAME))
     cppfile.write('void %s::performFunction(int funcCode)\n{\n' % (str_class))
     cppfile.write('\tswitch(funcCode)\n\t{')
-    for funIndex in range(len(dict_pages[pages])):
+    for funIndex in range(len(dict_page_fun[pages])):
         cppfile.write('''
         case %s:
             m_exec_%s();
             break;
-        ''' % (list(dict_pages[pages])[funIndex].upper(), list(dict_pages[pages])[funIndex]))
+        ''' % (list(dict_page_fun[pages])[funIndex].upper(), list(dict_page_fun[pages])[funIndex]))
     cppfile.write('default:\n\t\t\tbreak;\n\t}\n}')
     cppfile.close()
     filepath = ((os.sep).join([filepath, "Outcodefiles", CCNAME + "VT" + pages + ".cpp"]))

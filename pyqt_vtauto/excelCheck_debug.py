@@ -183,6 +183,7 @@ def check_range_is_legal(ws,indexRow, indexColumn):
 
 #在调用此接口之前，已经调用了check_range_is_legal
 # 故可以直接判断默认值是否在范围之内。无需考虑格式。
+
 def  default_num_is_inRange(ws,indexRow,indexColumn,check_result):
     str = param_basket[indexRow-4][5]
     middle = float(param_basket[indexRow - 4][3])

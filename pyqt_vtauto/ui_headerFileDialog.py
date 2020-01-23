@@ -74,7 +74,7 @@ class Ui_headerFileDialog(object):
         self.label_4.setText(_translate("headerFileDialog", "确定临时文件夹路径,统一存放本次操作的生成文件(格式:temp_项目名+\'VT\'+组件名,eg:temp_506VTAE)"))
         self.tempdir_qpb.setText(_translate("headerFileDialog", "1.文件夹路径"))
         self.label_3.setText(_translate("headerFileDialog", "组件名(eg:AE,WS)"))
-        self.headfiles_qpb.setText(_translate("headerFileDialog", "头文件路径(4A/4T)"))
+        self.headfiles_qpb.setText(_translate("headerFileDialog", "头文件路径可多选(4A/4T)"))
 
 
 if __name__ == "__main__":
