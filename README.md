@@ -1,0 +1,2 @@
+# pythonVT
+pyqt5
