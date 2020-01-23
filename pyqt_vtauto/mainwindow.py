@@ -386,6 +386,8 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
         subFunNameList = []
         self.headfilespath_qtb.resizeColumnsToContents() # 根据内容自动调整给定列宽
         self.headfilespath_qtb.clear()
+        for rownum in range(self.headfilespath_qtb.rowCount()):
+            self.headfilespath_qtb.removeRow(0)
         self.headfilespath_qtb.setColumnCount(2)
         headers = ["所需头文件列表","头文件本地路径"]
         self.headfilespath_qtb.setHorizontalHeaderLabels(headers)
