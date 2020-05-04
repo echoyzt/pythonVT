@@ -21,6 +21,7 @@ m_excelName=""
 m_tempdir = ""
 m_CCName = ""
 m_headFilesList = []
+m_funslist = []
 tempheadfilelist = []
 gTempProDir=""
 g_developer =""
@@ -35,37 +36,36 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle("VT 生成器")
-        #---------------navigation-----------------------
-        self.step1_qtb.clicked.connect(self.stepButtonClicked)
-        self.step2_qtb.clicked.connect(self.stepButtonClicked)
-        self.step3_qtb.clicked.connect(self.stepButtonClicked)
-
-
+        # ---------------navigation-----------------------
+        group = QButtonGroup(self)
+        group.addButton(self.updateexcel_qpb, 1)
+        group.addButton(self.step1_qtb, 2)
+        group.addButton(self.step2_qtb, 3)
+        group.addButton(self.step3_qtb, 4)
+        group.setExclusive(True)
+        group.buttonClicked.connect(self.stepButtonClicked)
         #-----------------operator---------------------
-        self.check_requirement_qpb.clicked.connect(self.operatorButtonClicked)
-        self.check_requirement_qpb2.clicked.connect(self.operatorButtonClicked)
-        self.addOtherPage_qpb.clicked.connect(self.operatorButtonClicked)
-        self.displayfunsInfo_qpb.clicked.connect(self.operatorButtonClicked)
-        self.headFileProcess_qpb.clicked.connect(self.operatorButtonClicked)
-        self.addenum_qpb.clicked.connect(self.operatorButtonClicked)
-        self.headFileProcess_qpb.clicked.connect(self.operatorButtonClicked)
-        self.generateUniversalvtfile_qpb.clicked.connect(self.operatorButtonClicked)
-        self.generate_xmlfile_qpb.clicked.connect(self.operatorButtonClicked)
-        self.generator_headfiles_qpb.clicked.connect(self.operatorButtonClicked)
-        self.parse_excelFunsXml_qpb.clicked.connect(self.operatorButtonClicked)
-        self.parse_excelXmlForUi_qpb.clicked.connect(self.operatorButtonClicked)
-        self.parseheaderfile_qpb.clicked.connect(self.operatorButtonClicked)
-        self.copyexcelmodel_qtb.clicked.connect(self.operatorButtonClicked)
-        self.update_excelinfo_qpb.clicked.connect(self.operatorButtonClicked)
-        self.funsToExcelXml_qtb.clicked.connect(self.operatorButtonClicked)
-        self.createExcelsheet_qpb.clicked.connect(self.operatorButtonClicked)
-        self.updateexcel_qpb.clicked.connect(self.operatorButtonClicked)
-
-        self.closeExcel_qpb.clicked.connect(self.operatorButtonClicked)
-        self.writeToExcel_qpb.clicked.connect(self.operatorButtonClicked)
-
-        self.checkexcelui_qpb.clicked.connect(self.operatorButtonClicked)
-
+        optGroup = QButtonGroup(self)
+        optGroup.addButton(self.check_requirement_qpb,1)
+        optGroup.addButton(self.collect_requirement_info_qpb, 2)
+        optGroup.addButton(self.addOtherPage_qpb, 3)
+        optGroup.addButton(self.displayfunsInfo_qpb, 4)
+        optGroup.addButton(self.headFileProcess_qpb, 5)
+        optGroup.addButton(self.addenum_qpb, 6)
+        optGroup.addButton(self.generateUniversalvtfile_qpb, 7)
+        optGroup.addButton(self.generate_xmlfile_qpb, 8)
+        optGroup.addButton(self.generator_headfiles_qpb, 9)
+        optGroup.addButton(self.parse_excelFunsXml_qpb, 10)
+        optGroup.addButton(self.parse_excelXmlForUi_qpb, 11)
+        optGroup.addButton(self.parseheaderfile_qpb, 12)
+        optGroup.addButton(self.copyexcelmodel_qtb, 13)
+        optGroup.addButton(self.update_excelinfo_qpb, 14)
+        optGroup.addButton(self.funsToExcelXml_qtb, 15)
+        optGroup.addButton(self.createExcelsheet_qpb, 16)
+        optGroup.addButton(self.closeExcel_qpb, 17)
+        optGroup.addButton(self.writeToExcel_qpb, 18)
+        optGroup.addButton(self.checkexcelui_qpb, 19)
+        optGroup.buttonClicked.connect(self.operatorButtonClicked)
         #-------------------file operator-------------------
         self.filebtn_1.clicked.connect(self.fileButtonClicked)
         self.excelcollect_btn.clicked.connect(self.fileButtonClicked)
@@ -74,7 +74,7 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
         self.importToTreeWidegt_qpb.clicked.connect(self.addFunsToTreeWidget_slot)
         self.deleteFromTreeWidegt_qpb.clicked.connect(self.deleteFromTreeWidget_slot)
         self.xmlindex_qcb.currentIndexChanged.connect(self.showxmlfiles)
-
+        self.filter_functions_qle.textChanged.connect(self.filterFunctons)
 
         #initialize setting
         self.stackedWidget.setCurrentIndex(0)
@@ -84,20 +84,15 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
         self.resultOutput_qte2.setReadOnly(True)
         self.xmldisplay_qte.setReadOnly(True)
         #self.cppfiles_qte.setReadOnly(True)
-        self.requirement_rule_qte.setReadOnly(True)
+        #self.requirement_rule_qte.setReadOnly(True)
         self.InitializeTreeWidget()
         self.development_engineer_qle.setText('yuzt')
 
-
-        filedialogInstance=HeaderFileDialog()
-        filedialogInstance.exec()
-
-
-    def stepButtonClicked(self):
-        sender = self.sender().text()
+    def stepButtonClicked(self,val):
+        #sender = self.sender().text()
+        sender = val.text()
         if sender == '1需求表格更新':
             self.stackedWidget.setCurrentIndex(1)
-
         if  sender == 'step1 收集表格信息':
             self.stackedWidget.setCurrentIndex(3)
             self.tabWidget.setCurrentIndex(1)
@@ -122,11 +117,8 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
             print("m_excelName=%s" % (excelName))
 
 
-    def operatorButtonClicked(self):
-        sender = self.sender().text()
-        if (sender=='1需求表格更新'):
-            self.stackedWidget.setCurrentIndex(1)
-
+    def operatorButtonClicked(self,val):
+        sender = val.text()
 
         if (sender=='获取接口列表'):
             print("信息收集到 2excelInfos.txt")
@@ -149,16 +141,17 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
                                 #print("tline2=", tline2)
                                 tline3=(tline2[tline2.find('SMEE_INT32')+10:]).strip()
                                 #print("tline3=", tline3)
-                                if ("_req" in tline3) or ("_wait" in tline3) or ("_fcn" in tline3):pass
+                                if ("_req" in tline3) or ("_wait" in tline3) or ("_fcn" in tline3) or ("_subscribe" in tline3) or ("_unsubscribe" in tline3):pass
                                 else:
                                     #写到列表中
                                     self.funs_qlw.insertItem(0, tline3)
+                                    m_funslist.append(tline3)
                                     self.funs_qlw.setSelectionMode(QAbstractItemView.MultiSelection)  # 设置选择模式
                         else:pass
                     filename.close()
                 else:print("no the file")
             log.close()
-
+            self.funs_qlw.setSortingEnabled(True)
 
         if (sender == '拷贝需求表格模板'):
             global  m_excelName
@@ -405,6 +398,7 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
         self.funs_treeWidget.expandAll()
 
 
+
     def deleteFromTreeWidget_slot(self):
         parent = self.funs_treeWidget.currentItem().parent()
         if (parent): # parent != null
@@ -412,9 +406,9 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
             print("delete index=" ,index)
 
             funName = parent.takeChild(index).text(0)
-            parent.takeChild(index)
+            #parent.takeChild(index)
 
-            rowlistwidget = self.funs_qlw.count() # 得到子项总数
+            rowlistwidget = self.funs_qlw.count() # 得到listwidget内容行数
             self.funs_qlw.insertItem(rowlistwidget + 1, funName)
         else: # 父节点上
             index = self.funs_treeWidget.indexOfTopLevelItem(self.funs_treeWidget.currentItem())
@@ -534,13 +528,21 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
             else:
                 QMessageBox.warning(self, "Warning", fileOut + "Not Exist!")
 
+    def filterFunctons(self,str):
+        self.funs_qlw.clear()
+        for item in m_funslist:
+            if str in item:
+                self.funs_qlw.insertItem(0, item)
+    def showInfo(self):
+       pass
+
 class HeaderFileDialog(QDialog, ui_headerFileDialog.Ui_headerFileDialog):
     def __init__(self, parent=None):
         super(QDialog, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle("准备工作")
-        self.projectName_qle.setText('012D')
-        self.componentName_qle.setText('CE')
+        self.projectName_qle.setText('506')
+        self.componentName_qle.setText('EC')
 
         self.tempdir_qpb.clicked.connect(self.fileButtonClicked)
         self.headfiles_qpb.clicked.connect(self.fileButtonClicked)
@@ -606,10 +608,15 @@ class HeaderFileDialog(QDialog, ui_headerFileDialog.Ui_headerFileDialog):
 
 #m_tempdir=G:/all_exercises/python_prjs/pyvt_auto0630/PYVTUI/VTUI
 #gTempProDir=temp_506VTEC
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     mainWindow = MainWindow()
     edsVtxx=VTXXUI()
     mainWindow.resize(1100,900)
+
+    filedialogInstance = HeaderFileDialog()
+    filedialogInstance.exec()
+
     mainWindow.show()
     sys.exit(app.exec_())

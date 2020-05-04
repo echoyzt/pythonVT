@@ -91,8 +91,7 @@ def global_varibale(workbook,log,m_CCName,existXX4A,existXX4T):
         tlist=[]
         for row in range(5, m_row_num):
             if (sh1.cell(row,0).value) == page:
-                dict_layouttab[page]=\
-                tlist.append(sh1.cell(row,1).value)
+                dict_layouttab[page]=tlist.append(sh1.cell(row,1).value)
         dict_layouttab[page]=list(set(tlist))
     print ('dict_layouttab=',dict_layouttab)
 

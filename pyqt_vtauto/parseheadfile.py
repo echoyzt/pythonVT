@@ -135,9 +135,9 @@ def ExcelFunInFile(file,funname,temp_parameter_list,log):
                     temp_sub = line_info_strip.replace(' *', ' ')
                     if pattern5.search(temp_sub):
                         sub_line_info_lstrip = temp_sub[:temp_sub.find(')')]  # 去掉 )；\n
-                    list_sub_line_info_lstrip = sub_line_info_lstrip.split(' ')
-                    print ('list_sub_line_info_lstrip=%s' %(list_sub_line_info_lstrip))
-                    temp_parameter_list.append(list_sub_line_info_lstrip)
+                        list_sub_line_info_lstrip = sub_line_info_lstrip.split(' ')
+                        print ('list_sub_line_info_lstrip=%s' %(list_sub_line_info_lstrip))
+                        temp_parameter_list.append(list_sub_line_info_lstrip)
                     log.write(line_info)
 
                     line_info = file.readline()

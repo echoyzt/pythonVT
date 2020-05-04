@@ -55,7 +55,7 @@ class VTXXUI(QMainWindow):
             nodeFunName.setAttribute('name', funs_key[index])
             funs_value = phf.dict_funs[funs_key[index]]  # 获取 funs_key[i]的值列表
             codeStr = '[item]u_param.param_' + funs_key[index]
-            #print ('funs_value=%s'%(funs_value))
+            print ('funs_value=%s'%(funs_value))
             for params_num in range(len(funs_value)):  # 第二层循环，参数个数
                 parameterlist = []
                 parameterlist.append(codeStr)
