@@ -175,7 +175,7 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
                 return
             log = open(ExcelPath + "\\2excelInfos.txt", 'a+') # a+可追加可写
             wb = xlrd.open_workbook(ExcelPath + '\\' + m_excelName, formatting_info=True)  # excel 多单元格合并
-            collectExcelInfo.global_varibale(wb,log,m_CCName,existXX4A,existXX4T)
+            collectExcelInfo.global_varibale(wb,log,m_CCName,dict_pageToFuns)
             phf.dict_pageToFuns_fromExcel(collectExcelInfo.funs_list_sh1,ExcelPath,log )
             log.close()
             self.displayResult(sender)
@@ -269,7 +269,8 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
             # newwb = copy(oldwb)
             excelToXML.excelToXmlForUi(oldwb,
                                        collectExcelInfo.dict_layouttab,
-                                       collectExcelInfo.dict_firstTabs,
+                                       dict_pageToFuns,
+                                       collectExcelInfo.dict_funsNameToShow,
                                        collectExcelInfo.dict_funsSheet2,
                                        phf.dict_enumForUi,
                                        phf.dict_enum,

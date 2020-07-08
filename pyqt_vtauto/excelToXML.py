@@ -104,7 +104,8 @@ def excel_to_xml(curpath):
 
 def excelToXmlForUi(workbook,
                     dictlayout,
-                    dict_firstTabs,
+                    dict_pageToFuns,
+                    dict_funsNameToShow,
                     dicFunInfoSh2,
                     dict_enumForUi,
                     dicEnum,
@@ -123,13 +124,13 @@ def excelToXmlForUi(workbook,
             nodeTab = doc.createElement('firstTab')
             nodeTab.setAttribute('tableName', dictlayout[pageName][labelIndex])
 
-            tfunslist=dict_firstTabs[dictlayout[pageName][labelIndex]]
+            tfunslist= dict_pageToFuns[pageName]
             print('tfunslist=',tfunslist)
             for funIndex in range(len(tfunslist)):
                 nodeFunName = doc.createElement('funName')
-                funName=tfunslist[funIndex][1]
-                nodeFunName.setAttribute('funId', tfunslist[funIndex][1])
-                nodeFunName.setAttribute('funLabelId', tfunslist[funIndex][0])
+                funName=tfunslist[funIndex]
+                nodeFunName.setAttribute('funId', dict_funsNameToShow[funName])
+                nodeFunName.setAttribute('funLabelId', dict_funsNameToShow[funName])
                 print ('funName=',funName)
                 print(dicFunInfoSh2[funName])
 
@@ -225,7 +226,8 @@ def xmlToBottomCpp(CCNAME,
 
     for pageIndex in range(len(list(dict_layouttab.keys()))):
         pages = list(dict_layouttab.keys())[pageIndex]
-        log.write('=======正在生成导航页 %s 的 cpp代码文件...========\n')
+        print('=======正在生成导航页 %s 的 cpp代码文件...========' %(pages))
+        log.write('=======正在生成导航页 %s 的 cpp代码文件...========\n' %(pages))
         bottomFile = open((os.sep).join([curpath, "Outcodefiles", "bottom"+CCNAME + "VT" + pages + ".cpp"]), 'a+')#可读可写
         fileRange = open((os.sep).join([curpath, "Outcodefiles", 'temp_rangeCheck.txt']), 'a+')
         fileButtonClick = open((os.sep).join([curpath, "Outcodefiles", 'performButtonClickedSlot.txt']), 'a+')
@@ -255,8 +257,9 @@ void %sVT%s::updateWindowData()//slot
         outputStart(func_name);\n'''%(CCNAME,pages,tfunName,(' '.join(tfunName.split('_'))).title()))
             for funname in funNames:
                 fun = funname.getAttribute("name") #可以改进否？
+
                 if fun == tfunName:
-                    log.write("此导航页包含的接口有：\nfun=\n %s"%(fun))
+                    log.write("此导航页包含的接口有：\nfun= %s\n"%(fun))
                     templistCheckIsValid = []
                     attribute = funname.getElementsByTagName("attribute")
                     for attr in attribute:

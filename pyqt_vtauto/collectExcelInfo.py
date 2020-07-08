@@ -17,6 +17,7 @@ m_row_num2=0
 dict_funsSheet2 = {}
 dict_table_params = {}
 dict_firstTabs = {}
+dict_funsNameToShow={}
 dict_funSh1Index = {}
 dict_tab1Index = {} # 需求表sh1第2列
 dict_layouttab = {}
@@ -31,11 +32,11 @@ dict_firstTabs= {'label2': [['Disconnect Net', 'CE4T_disconnect_net'], ['Connect
 dict_layouttab= {'TCM': ['label2', 'label1']}
 dict_funs ={'CE4T_get_as_heater_PID_params': [['OUT', 'CE4T_PID_PARAMS_STRUCT', 'parameters)']], 'CE4T_set_as_heater_PID_params': [['IN', 'CE4T_PID_PARAMS_STRUCT', 'parameters)']]}
 '''
-def global_varibale(workbook,log,m_CCName,existXX4A,existXX4T):
+def global_varibale(workbook,log,m_CCName,dict_pageToFuns):
     log.write('================记录的信息是全局变量：==============\n')
     page_list1 = []  # app,maintenance,...
     tablist=[]
-    global set_page ,set_tabs  ,m_row_num,m_row_num2,dict_firstTabs,dict_page_fun
+    global set_page ,set_tabs  ,m_row_num,m_row_num2,dict_firstTabs,dict_page_fun,dict_funsNameToShow
     sh1 = workbook.sheet_by_index(1)
     sh2 = workbook.sheet_by_index(2)
     rownum1 = sh1.nrows
@@ -82,10 +83,12 @@ def global_varibale(workbook,log,m_CCName,existXX4A,existXX4T):
         for row in range(5, m_row_num):
             if (sh1.cell(row, 1).value) == tab:
                 tlist.append([sh1.cell(row, col).value for col in range(3, 5)])#列表推导式
+                dict_funsNameToShow[tlist[0]]=tlist[1]
 
         dict_firstTabs[tab] = tlist
         print('dict_firstTabs[%s]=%s' %(tab,dict_firstTabs[tab]))
     print('dict_firstTabs=', dict_firstTabs)
+    print('dict_funsNameToShow=',dict_funsNameToShow)
 
     for page in set_page:
         tlist=[]
@@ -119,13 +122,8 @@ def global_varibale(workbook,log,m_CCName,existXX4A,existXX4T):
             if m:
                 macro = macroStr[macroStr.find('[') + 1:macroStr.find(']')]
 
-    for page in dict_layouttab.keys():
-        tlist=[]
-        for label in dict_layouttab[page]:
-            for items in dict_firstTabs[label]:
-                tlist.append(items[1])
-        dict_page_fun[page]=tlist
-        print ('dict_page_fun[%s]=%s'%(page,tlist))
+    dict_page_fun= dict_pageToFuns
+    print ('dict_page_fun[%s]=%s'%(page,tlist)) #改
 
     print('确定需要的头文件，为cpp头文件include做准备\n')
     for pages in dict_page_fun.keys():

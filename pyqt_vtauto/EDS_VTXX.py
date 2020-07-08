@@ -265,7 +265,7 @@ class VTXXUI(QMainWindow):
             for j in range(len(dict_pageToFuns[key])):
                 sheet1tab.insertRow(rowsh1+j)
                 sheet1tab.setItem(rowsh1+j, 0, QTableWidgetItem(key))
-                sheet1tab.setItem(rowsh1+j, 1, QTableWidgetItem("label1"))
+                sheet1tab.setItem(rowsh1+j, 1, QTableWidgetItem("label"))
                 sheet1tab.setItem(rowsh1+j, 2, QTableWidgetItem("label2"))
                 sheet1tab.setItem(rowsh1+j, 3, QTableWidgetItem(' '.join(dict_pageToFuns[key][j].split('_')[1:]).title()))
                 sheet1tab.setItem(rowsh1+j, 4, QTableWidgetItem(dict_pageToFuns[key][j]))
